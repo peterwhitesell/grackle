@@ -30,12 +30,7 @@ For each entry:
 ```exclude``` is an optional file that lists patterns to exclude in the synchronization.
 ```watch``` is the file Mockingbird watches. When that file changes, Mockingbird uses ```rsync``` to copy ```source``` into ```target```.
 
-For instance, if you have:
-```path/to/a```
-and
-```path/to/b```
-and you want to have:
-```path/to/b/a```
+For instance, if you have ```path/to/a``` and ```path/to/b``` and you want to have ```path/to/b/a```,
 you should have
 ```
 {
