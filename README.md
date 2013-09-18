@@ -41,4 +41,4 @@ For instance, if you have ```path/to/a``` and ```path/to/b``` and you want to ha
 }
 ```
 
-Mockingbird overwrites any conflicting files in the ```target```. It also deletes any files previously in ```target``` that are not in ```source```.
+Mockingbird overwrites any conflicting files in the ```target```. It also deletes any files previously in ```target``` that are not in ```source``` and any files matchced in ```exclude```.
