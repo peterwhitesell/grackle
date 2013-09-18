@@ -3,11 +3,11 @@
         "exclude": "/home/peter/webdev/grackle/tests/exclude_git",
         "watch"  : "/home/peter/webdev/grackle/tests/watch",
         "source" : "/home/peter/webdev/grackle/tests/test_dir/",
-        "target" : "/home/peter/webdev/grackle/tests/test_dest/"
+        "target" : "/home/peter/webdev/grackle/tests/copy_into/"
     },
     "test2": {
         "watch" : "/home/peter/webdev/grackle/index.js",
         "source": "/home/peter/webdev/grackle/tests/test_dir/test_inner_dir/",
-        "target": "/home/peter/webdev/grackle/tests/test_dest/"
+        "target": "/home/peter/webdev/grackle/tests/copy_into/"
     }
 }
