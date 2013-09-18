@@ -44,6 +44,7 @@ function Grackle(){
     this.paths = _.object(['sources'], args);
     this.watching = {};
 
+    this.validateSources(this.paths.sources);
     this.sources = require(this.paths.sources);
     for(var pairName in this.sources){
         this.busy[pairName] = false;
@@ -51,6 +52,16 @@ function Grackle(){
         this.watching[pairName] = this.watchPair(pairName, this.sources[pairName]);
     }
 }
+
+Grackle.prototype.validateSources = function(sources_path){
+    if (! this.fileExists(sources_path)){
+        this.error_exit([
+            'Specify a configuration file.'
+            , 'Configuration path: ' + sources_path
+        ]);
+    }
+    this.paths.sources = path.resolve(this.paths.sources);
+};
 
 Grackle.prototype.validatePair = function(pairName, pair){
     console.log("Validating " + pairName);
