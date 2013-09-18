@@ -5,7 +5,10 @@ Mockingbird is a recursive directory synchronization tool that watches a file an
 ## usage
 
 ```
-./mockingbird path/to/pairs.json
+git clone https://github.com/peterwhitesell/mockingbird.git
+cd mockingbird
+chmod +x mockingbird
+./mockingbird /absolute/path/to/pairs.json
 ```
 
 pairs.json should look like this with as many entries as you'd like:
