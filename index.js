@@ -10,9 +10,8 @@ var
     path = require('path')
     ,fs = require('fs')
     ,exec = require('child_process').exec
-    ,_ = require('underscore')
+    ,_ = require('underscore');
 
-ncp.limit = 8;
 
 function Mockingbird(){
     this.help = 'help...';
