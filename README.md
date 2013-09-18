@@ -8,7 +8,7 @@ Mockingbird is a recursive directory synchronization tool that watches a file an
 ./mockingbird path/to/pairs.json
 ```
 
-pairs.json should look like this:
+pairs.json should look like this with as many entries as you'd like:
 
 ```
 {
@@ -26,4 +26,6 @@ pairs.json should look like this:
 }
 ```
 
-```exclude``` is a file that lists patterns to exclude in the synchronization.
+For each entry:
+```exclude``` is an optional file that lists patterns to exclude in the synchronization.
+```watch``` is the file Mockingbird watches. When that file changes, Mockingbird uses ```rsync``` to copy ```source``` to ```target```.
