@@ -7,6 +7,7 @@ Grackle is a recursive directory synchronization tool that watches a file and tr
 ```
 git clone https://github.com/peterwhitesell/grackle.git
 cd grackle
+npm install
 chmod +x grackle
 ./grackle /absolute/path/to/pairs.json
 ```
