@@ -26,12 +26,10 @@ pairs.json should look like this with as many entries as you'd like:
 }
 ```
 
-For each entry:
-```exclude``` is an optional file that lists patterns to exclude in the synchronization.
-```watch``` is the file Mockingbird watches. When that file changes, Mockingbird uses ```rsync``` to copy ```source``` into ```target```.
+For each entry, ```exclude``` is an optional file that lists patterns to exclude in the synchronization. ```watch``` is the file Mockingbird watches. When that file changes, Mockingbird uses ```rsync``` to copy ```source``` into ```target```.
 
-For instance, if you have ```path/to/a``` and ```path/to/b``` and you want to have ```path/to/b/a```,
-you should have
+For instance, if you have ```path/to/a``` and ```path/to/b``` and you want to have ```path/to/b/a```, pairs.json should include:
+
 ```
 {
     ...: {
@@ -42,3 +40,5 @@ you should have
     ...
 }
 ```
+
+Mockingbird overwrites any conflicting files in the ```target```. It also deletes any files previously in ```target``` that are not in ```source```.
