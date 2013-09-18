@@ -12,7 +12,6 @@ var
     ,exec = require('child_process').exec
     ,_ = require('underscore');
 
-
 function Grackle(){
     this.help = 'help...';
     this.error_art = 'error...';
