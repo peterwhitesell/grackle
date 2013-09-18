@@ -1,10 +1,3 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: peter
- * Date: 9/17/13
- * Time: 12:43 PM
- * To change this template use File | Settings | File Templates.
- */
 // ==========================================
 // mockingbird
 // CORE: The core class definition
@@ -18,15 +11,12 @@ var
     ,fs = require('fs')
     ,exec = require('child_process').exec
     ,_ = require('underscore')
-    ,ncp = require('ncp')
-    ,rmdir = require('rimraf');
 
 ncp.limit = 8;
 
 function Mockingbird(){
-    this.help = 'help...';//fs.readFileSync(path.join(__dirname, 'assets' , 'help.txt'), {encoding: 'utf8'});
-//    this.art =  fs.readFileSync(path.join(__dirname, 'assets' , 'piglet.ascii'), {encoding: 'utf8'});
-    this.error_art = 'error...';// fs.readFileSync(path.join(__dirname, 'assets' , 'error.ascii'), {encoding: 'utf8'});
+    this.help = 'help...';
+    this.error_art = 'error...';
 
     this.opt = require('optimist')
 
@@ -102,10 +92,6 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
                 , 'Target: ' + pair.target
             ]);
         } else {
-//            pair.target += '/' + path.basename(pair.source);
-//            var fn = path.basename(pair.source, path.extname(pair.source)) + '.min.css';
-//            pair.target = path.join(pair.target, fn)
-
         }
     }
     pair.target = path.resolve(pair.target);

@@ -1,6 +1,6 @@
 {
     "test1": {
-        "exclude": "/home/peter/webdev/mockingbird/exclude",
+        "exclude": "/home/peter/webdev/mockingbird/tests/exclude_git",
         "watch"  : "/home/peter/webdev/mockingbird/tests/watch",
         "source" : "/home/peter/webdev/mockingbird/tests/test_dir/",
         "target" : "/home/peter/webdev/mockingbird/tests/test_dest/"
@@ -11,13 +11,13 @@
         "target": "/home/peter/webdev/mockingbird/tests/test_dest/"
     },
     "RealtimeMarketingLab": {
-        "exclude": "/home/peter/webdev/mockingbird/exclude",
+        "exclude": "/home/peter/webdev/mockingbird/tests/exclude_git",
         "watch"  : "/home/peter/webdev/rltm/wp-content/themes/.git/COMMIT_EDITMSG",
         "source" : "/home/peter/webdev/rltm/wp-content/themes/RealtimeMarketingLab/",
         "target" : "/home/peter/webdev/rltm_deploy/wp-content/themes/"
     },
     "mmep": {
-        "exclude": "/home/peter/webdev/mockingbird/exclude",
+        "exclude": "/home/peter/webdev/mockingbird/tests/exclude_git",
         "watch"  : "/home/peter/webdev/rltm/wp-content/mu-plugins/mmep/.git/COMMIT_EDITMSG",
         "source" : "/home/peter/webdev/rltm/wp-content/mu-plugins/mmep/",
         "target" : "/home/peter/webdev/rltm_deploy/wp-content/mu-plugins/"
