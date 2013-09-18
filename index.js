@@ -64,7 +64,7 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
     pair.watch = path.resolve(pair.watch);
     if (! this.dirExists(pair.source)){
         this.error_exit([
-            'Specify a single source directory for me to compile.'
+            'Specify a single source directory for me to copy from.'
             , 'Source: ' + pair.source
         ]);
     }
@@ -77,7 +77,7 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
             var d = path.dirname(pair.target);
             if (! this.dirExists(d)){
                 this.error_exit([
-                    'The directory doesn\'t exist for me to write the css to.'
+                    'The directory doesn\'t exist for me to copy into.'
                     , 'Target: ' + pair.target
                 ]);
             }
@@ -87,7 +87,7 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
         //we're dealing with a directory path
         if (! this.dirExists(pair.target)){
             this.error_exit([
-                'Specify a directory for me to copy the source into.'
+                'Specify a directory for me to copy into.'
                 , 'Target: ' + pair.target
             ]);
         } else {
@@ -97,16 +97,17 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
     return pair;
 };
 
+
 Mockingbird.prototype.watchPair = function(pairName, pair){
     this.isWatching(pairName, pair);
     var that = this;
     return fs.watch(
         pair.watch, function(event, filename){
-            console.log(filename, event + 'd');
             if(!that.busy[pairName]){
                 that.start[pairName] = new Date();
                 that.busy[pairName] = true;
                 console.log('');
+                console.log(filename, event + 'd');
                 console.log("Starting to copy " + pairName);
                 console.log('Copying to ' + pair.target + '. . .');
 
@@ -123,8 +124,7 @@ Mockingbird.prototype.watchPair = function(pairName, pair){
                         that.watchCallback(pairName, error, stdout, stderr);
                     }
                 );
-            } else {
-                console.log("but currently too busy");
+
             }
         }
     );
