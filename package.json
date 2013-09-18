@@ -1,13 +1,13 @@
 {
-	"name": "Mockingbird"
+	"name": "Grackle"
 	, "description": "A recursive directory synchronization tool that watches a file and triggers when it changes."
 	, "version": "0.0.1"
 	, "keywords": ["synchronize", "watch"]
-	, "homepage": "https://github.com/peterwhitesell/mockingbird"
+	, "homepage": "https://github.com/peterwhitesell/grackle"
 	, "author": "Peter Whitesell"
 	, "repository": {
 	"type": "git"
-	, "url": "https://github.com/peterwhitesell/mockingbird.git"
+	, "url": "https://github.com/peterwhitesell/grackle.git"
 }
 	, "licenses": [
 	{

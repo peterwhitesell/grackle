@@ -1,13 +1,13 @@
 {
     "test1": {
-        "exclude": "/home/peter/webdev/mockingbird/tests/exclude_git",
-        "watch"  : "/home/peter/webdev/mockingbird/tests/watch",
-        "source" : "/home/peter/webdev/mockingbird/tests/test_dir/",
-        "target" : "/home/peter/webdev/mockingbird/tests/test_dest/"
+        "exclude": "/home/peter/webdev/grackle/tests/exclude_git",
+        "watch"  : "/home/peter/webdev/grackle/tests/watch",
+        "source" : "/home/peter/webdev/grackle/tests/test_dir/",
+        "target" : "/home/peter/webdev/grackle/tests/test_dest/"
     },
     "test2": {
-        "watch" : "/home/peter/webdev/mockingbird/index.js",
-        "source": "/home/peter/webdev/mockingbird/tests/test_dir/test_inner_dir/",
-        "target": "/home/peter/webdev/mockingbird/tests/test_dest/"
+        "watch" : "/home/peter/webdev/grackle/index.js",
+        "source": "/home/peter/webdev/grackle/tests/test_dir/test_inner_dir/",
+        "target": "/home/peter/webdev/grackle/tests/test_dest/"
     }
 }

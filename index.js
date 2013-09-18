@@ -1,5 +1,5 @@
 // ==========================================
-// mockingbird
+// grackle
 // CORE: The core class definition
 // ==========================================
 // Copyright 2013 Modern Media, Inc
@@ -13,7 +13,7 @@ var
     ,_ = require('underscore');
 
 
-function Mockingbird(){
+function Grackle(){
     this.help = 'help...';
     this.error_art = 'error...';
 
@@ -53,7 +53,7 @@ function Mockingbird(){
     }
 }
 
-Mockingbird.prototype.validatePair = function(pairName, pair){
+Grackle.prototype.validatePair = function(pairName, pair){
     console.log("Validating " + pairName);
     if (! this.fileExists(pair.watch)){
         this.error_exit([
@@ -98,7 +98,7 @@ Mockingbird.prototype.validatePair = function(pairName, pair){
 };
 
 
-Mockingbird.prototype.watchPair = function(pairName, pair){
+Grackle.prototype.watchPair = function(pairName, pair){
     this.isWatching(pairName, pair);
     var that = this;
     return fs.watch(
@@ -131,7 +131,7 @@ Mockingbird.prototype.watchPair = function(pairName, pair){
 };
 
 
-Mockingbird.prototype.isWatching = function(pairName, pair){
+Grackle.prototype.isWatching = function(pairName, pair){
     console.log('');
 //    console.log(this.art);
     console.log('Watching ' + pairName + '...');
@@ -144,7 +144,7 @@ Mockingbird.prototype.isWatching = function(pairName, pair){
     }
     console.log('')
 };
-Mockingbird.prototype.watchCallback = function (pairName, error, stdout, stderr) {
+Grackle.prototype.watchCallback = function (pairName, error, stdout, stderr) {
     if (error !== null) {
         console.log (this.error_art);
         console.log(error.message);
@@ -157,21 +157,21 @@ Mockingbird.prototype.watchCallback = function (pairName, error, stdout, stderr)
     this.watchPair(pairName, this.sources[pairName]);
 };
 
-Mockingbird.prototype.dirExists = function(p){
+Grackle.prototype.dirExists = function(p){
     if (fs.existsSync(p)){
         var s = fs.statSync(p);
         if (s.isDirectory()) return true;
     }
     return false;
 };
-Mockingbird.prototype.fileExists = function(p){
+Grackle.prototype.fileExists = function(p){
     if (fs.existsSync(p)){
         var s = fs.statSync(p);
         if (s.isFile()) return true;
     }
     return false;
 };
-Mockingbird.prototype.error_exit = function(errors){
+Grackle.prototype.error_exit = function(errors){
     console.log (this.error_art);
     _.each(errors, function(e){
         console.log(e);
@@ -179,11 +179,11 @@ Mockingbird.prototype.error_exit = function(errors){
     console.log(this.help);
     process.exit(1);
 };
-Mockingbird.prototype.stripTrailingSlash = function(str) {
+Grackle.prototype.stripTrailingSlash = function(str) {
     if(str.substr(-1) == '/') {
         return str.substr(0, str.length - 1);
     }
     return str;
 };
 
-new Mockingbird();
+new Grackle();
