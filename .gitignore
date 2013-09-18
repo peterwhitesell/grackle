@@ -36,4 +36,5 @@ nbproject
 node_modules
 dist
 
-# Piglet
+# Grackle
+/tests/test_dest/*
