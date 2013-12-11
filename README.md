@@ -9,10 +9,10 @@ git clone https://github.com/peterwhitesell/grackle.git
 cd grackle
 npm install
 chmod +x grackle
-./grackle /absolute/path/to/pairs.json
+./grackle path/to/config.json
 ```
 
-pairs.json should look like this with as many entries as you'd like:
+config.json should look like this with as many entries as you'd like:
 
 ```
 {
@@ -32,7 +32,7 @@ pairs.json should look like this with as many entries as you'd like:
 
 For each entry, ```exclude``` is an optional file that lists patterns to exclude in the synchronization. ```watch``` is the file Grackle watches. When that file changes, Grackle uses ```rsync``` to copy ```source``` into ```target```.
 
-For instance, if you have ```path/to/a``` and ```path/to/b/``` and you want to have ```path/to/b/a/```, pairs.json should include:
+For instance, if you have ```path/to/a``` and ```path/to/b/``` and you want to have ```path/to/b/a/```, config.json should include:
 
 ```
 {

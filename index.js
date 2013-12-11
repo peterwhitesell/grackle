@@ -46,10 +46,10 @@ function Grackle(){
 
     this.validateSources(this.paths.sources);
     this.sources = require(this.paths.sources);
-    for(var pairName in this.sources){
-        this.busy[pairName] = false;
-        this.sources[pairName] = this.validatePair(pairName, this.sources[pairName]);
-        this.watching[pairName] = this.watchPair(pairName, this.sources[pairName]);
+    for(var configName in this.sources){
+        this.busy[configName] = false;
+        this.sources[configName] = this.validateConfig(configName, this.sources[configName]);
+        this.watching[configName] = this.watchConfig(configName, this.sources[configName]);
     }
 }
 
@@ -64,75 +64,75 @@ Grackle.prototype.validateSources = function(sources_path){
     this.paths.sources = path.resolve(this.paths.sources);
 };
 
-Grackle.prototype.validatePair = function(pairName, pair){
-    console.log("Validating " + pairName);
-    if (! this.fileExists(pair.watch)){
+Grackle.prototype.validateConfig = function(configName, config){
+    console.log("Validating " + configName);
+    if (! this.fileExists(config.watch)){
         this.error_exit([
             'Specify a file for me to watch.'
-            , 'Watch: ' + pair.watch
+            , 'Watch: ' + config.watch
         ]);
     }
-    pair.watch = path.resolve(pair.watch);
-    if (! this.dirExists(pair.source)){
+    config.watch = path.resolve(config.watch);
+    if (! this.dirExists(config.source)){
         this.error_exit([
             'Specify a single source directory for me to copy from.'
-            , 'Source: ' + pair.source
+            , 'Source: ' + config.source
         ]);
     }
-    pair.source = this.stripTrailingSlash(pair.source);
-    pair.source = path.resolve(pair.source);
+    config.source = this.stripTrailingSlash(config.source);
+    config.source = path.resolve(config.source);
 
-    if ('' != path.extname(pair.target)){
+    if ('' != path.extname(config.target)){
         //then we're dealing with a file path...
-        if (! this.dirExists(pair.target)){
-            var d = path.dirname(pair.target);
+        if (! this.dirExists(config.target)){
+            var d = path.dirname(config.target);
             if (! this.dirExists(d)){
                 this.error_exit([
                     'The directory doesn\'t exist for me to copy into.'
-                    , 'Target: ' + pair.target
+                    , 'Target: ' + config.target
                 ]);
             }
         }
 
     } else {
         //we're dealing with a directory path
-        if (! this.dirExists(pair.target)){
+        if (! this.dirExists(config.target)){
             this.error_exit([
                 'Specify a directory for me to copy into.'
-                , 'Target: ' + pair.target
+                , 'Target: ' + config.target
             ]);
         } else {
         }
     }
-    pair.target = path.resolve(pair.target);
-    return pair;
+    config.target = path.resolve(config.target);
+    return config;
 };
 
 
-Grackle.prototype.watchPair = function(pairName, pair){
-    this.isWatching(pairName, pair);
+Grackle.prototype.watchConfig = function(configName, config){
+    this.isWatching(configName, config);
     var that = this;
     return fs.watch(
-        pair.watch, function(event, filename){
-            if(!that.busy[pairName]){
-                that.start[pairName] = new Date();
-                that.busy[pairName] = true;
+        config.watch, function(event, filename){
+            if(!that.busy[configName]){
+                that.start[configName] = new Date();
+                that.busy[configName] = true;
                 console.log('');
                 console.log(filename, event + 'd');
-                console.log("Starting to copy " + pairName);
-                console.log('Copying to ' + pair.target + '. . .');
+                console.log("Starting to copy " + configName);
+                console.log('Copying to ' + config.target + '. . .');
 
                 var exclude = "";
-                if(pair.exclude){
-                    exclude = "--exclude-from " + pair.exclude + " --delete-excluded ";
+                if(config.exclude){
+                    exclude = "--exclude-from " + config.exclude + " --delete-excluded ";
                 }
 
-                cmd = "rsync -av --delete " + exclude + pair.source + ' ' + pair.target;
+                cmd = "rsync -av --delete " + exclude + config.source + ' ' + config.target;
                 exec(
                     cmd,
                     function(error, stdout, stderr){
-                        that.busy[pairName] = false;
-                        that.watchCallback(pairName, error, stdout, stderr);
+                        that.busy[configName] = false;
+                        that.watchCallback(configName, error, stdout, stderr);
                     }
                 );
 
@@ -142,30 +142,30 @@ Grackle.prototype.watchPair = function(pairName, pair){
 };
 
 
-Grackle.prototype.isWatching = function(pairName, pair){
+Grackle.prototype.isWatching = function(configName, config){
     console.log('');
 //    console.log(this.art);
-    console.log('Watching ' + pairName + '...');
-    console.log('Watch:          ' + pair.watch);
-    console.log('Source:         ' + pair.source);
-    console.log('Target:         ' + pair.target);
-    if(pair.exclude){
+    console.log('Watching ' + configName + '...');
+    console.log('Watch:          ' + config.watch);
+    console.log('Source:         ' + config.source);
+    console.log('Target:         ' + config.target);
+    if(config.exclude){
 
-        console.log('Exclude:        ' + pair.exclude);
+        console.log('Exclude:        ' + config.exclude);
     }
     console.log('')
 };
-Grackle.prototype.watchCallback = function (pairName, error, stdout, stderr) {
+Grackle.prototype.watchCallback = function (configName, error, stdout, stderr) {
     if (error !== null) {
         console.log (this.error_art);
         console.log(error.message);
     } else {
         var d = new Date();
-        var elapsed = (d.getTime() - this.start[pairName].getTime())/1000;
-        console.log('Copied ' + pairName + ' in '+ elapsed + ' seconds.')
+        var elapsed = (d.getTime() - this.start[configName].getTime())/1000;
+        console.log('Copied ' + configName + ' in '+ elapsed + ' seconds.')
     }
-    this.watching[pairName].close();
-    this.watchPair(pairName, this.sources[pairName]);
+    this.watching[configName].close();
+    this.watchConfig(configName, this.sources[configName]);
 };
 
 Grackle.prototype.dirExists = function(p){
