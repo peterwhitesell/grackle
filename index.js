@@ -54,6 +54,7 @@ function Grackle(){
 }
 
 Grackle.prototype.validateSources = function(sources_path){
+    sources_path = path.resolve(sources_path);
     if (! this.fileExists(sources_path)){
         this.error_exit([
             'Specify a configuration file.'
